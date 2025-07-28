@@ -9,5 +9,11 @@
       }
     }
   ],
+  "routes": [
+    {
+      "src": "/hackrx/run",
+      "dest": "/api/hackrx_run.py"
+    }
+  ],
   "installCommand": "python3 -m pip install --no-cache-dir --upgrade pip setuptools && python3 -m pip install --no-cache-dir -r requirements.txt"
 }
