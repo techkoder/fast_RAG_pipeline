@@ -3,7 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - anyio=4.7.0
   - argon2-cffi=21.3.0
   - argon2-cffi-bindings=21.2.0
   - asttokens=3.0.0
@@ -160,6 +159,7 @@ dependencies:
       - aiohttp==3.12.14
       - aiosignal==1.4.0
       - annotated-types==0.7.0
+      - anyio==4.9.0
       - backoff==2.2.1
       - bcrypt==4.3.0
       - build==1.2.2.post1
@@ -181,6 +181,7 @@ dependencies:
       - google-api-python-client==2.177.0
       - google-auth==2.40.3
       - google-auth-httplib2==0.2.0
+      - google-genai==1.27.0
       - google-generativeai==0.8.5
       - googleapis-common-protos==1.70.0
       - greenlet==3.2.3
@@ -224,7 +225,7 @@ dependencies:
       - posthog==5.4.0
       - propcache==0.3.2
       - proto-plus==1.26.1
-      - protobuf==5.29.5
+      - protobuf==5.26.1
       - pyasn1==0.6.1
       - pyasn1-modules==0.4.2
       - pybase64==1.4.1
@@ -246,7 +247,7 @@ dependencies:
       - sqlalchemy==2.0.41
       - starlette==0.47.2
       - sympy==1.14.0
-      - tenacity==9.1.2
+      - tenacity==8.5.0
       - tiktoken==0.9.0
       - tokenizers==0.21.2
       - tqdm==4.67.1
