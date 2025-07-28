@@ -1,24 +1,16 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/*.py",
-      "use": "@vercel/python",
-      "config": {
-        "runtime": "python3.11"
-      }
+  "functions": {
+    "api/**": {
+      "runtime": "python3.11",
+      "excludeFiles": "{tests,.venv,*.md,docs,.git,*.cache,__pycache__}/**"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/hackrx/run",
       "dest": "/api/main.py"
     }
   ],
-  "installCommand": "python3 -m pip install --no-cache-dir --upgrade pip setuptools && python3 -m pip install --no-cache-dir -r requirements.txt",
-  "functions": {
-    "api/**": {
-      "excludeFiles": "{tests,.venv,*.md,docs,.git,*.cache,__pycache__}/**"
-    }
-  }
+  "installCommand": "python3 -m pip install --no-cache-dir --upgrade pip setuptools && python3 -m pip install --no-cache-dir -r requirements.txt"
 }
