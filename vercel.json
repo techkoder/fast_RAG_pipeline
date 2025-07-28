@@ -3,7 +3,6 @@
   "routes": [
     {
       "src": "/hackrx/run",
-      "methods": ["POST"],
       "dest": "/api/main.py"
     }
   ],

@@ -7,8 +7,10 @@ VALID_TOKEN = os.getenv("API_AUTH_TOKEN")
 
 def verify_bearer_token(authorization: str = Header(...)):
     if not authorization.startswith("Bearer "):
+        print("Invalid auth scheme")
         raise HTTPException(status_code=401, detail="Invalid auth scheme")
     token = authorization.replace("Bearer ", "").strip()
     if token != VALID_TOKEN:
+        print("Invalid token")
         raise HTTPException(status_code=403, detail=f"Invalid token: {token}"/"{VALID_TOKEN}")
     return True
