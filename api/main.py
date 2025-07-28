@@ -8,24 +8,28 @@ import traceback
 app = FastAPI()
 
 @app.post("/hackrx/run", response_model=RunResponse)
-async def hackrx_run(
-    request: RunRequest,
-    _auth=Depends(verify_bearer_token)
-):
+async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
     try:
-        print(f"Received request: {request.questions}")
-        text = download_pdf_text(str(request.documents))
+        print("🔹 Request received")
+        print("Documents:", request.documents)
+        print("Questions:", request.questions)
+
+        text = download_pdf_text(request.documents)
+        print("🔹 PDF downloaded")
+
         chain = build_rag_chain(text)
+        print("🔹 RAG chain built")
 
         answers = []
         for q in request.questions:
-            prompt = f"give ans in a single line and give precise answer. {q}"
-            result = chain(prompt)
-            ans = result["result"]
-            answers.append(ans)  # no sources
+            result = chain(q)
+            print("🔹 Question processed:", q)
+            answers.append(result["result"])
 
+        print("🔹 Final answers:", answers)
         return RunResponse(answers=answers)
 
     except Exception as e:
-        traceback.print_exc()
-        raise HTTPException(status_code=500, detail=f"Internal server error: {e}")
+        print("❗ Error occurred:", e)
+        traceback.print_exc()  # This is key
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
