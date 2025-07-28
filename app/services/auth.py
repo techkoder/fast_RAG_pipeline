@@ -10,6 +10,5 @@ def verify_bearer_token(authorization: str = Header(...)):
         raise HTTPException(status_code=401, detail="Invalid auth scheme")
     token = authorization.replace("Bearer ", "").strip()
     if token != VALID_TOKEN:
-        print(f"Invalid token: {token}")
-        raise HTTPException(status_code=403, detail="Invalid token")
+        raise HTTPException(status_code=403, detail=f"Invalid token: {token}")
     return True
