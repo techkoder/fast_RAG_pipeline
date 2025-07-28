@@ -153,7 +153,6 @@ pysocks==1.7.1
 python-dateutil==2.9.0post0
 python-dotenv==1.1.1
 python-json-logger==3.2.1
-pywin32==308
 pywinpty==2.0.15
 pyyaml==6.0.2
 pyzmq==26.2.0
