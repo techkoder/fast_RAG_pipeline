@@ -20,7 +20,8 @@ async def hackrx_run(
 
     answers = []
     for q in request.questions:
-        result = chain(q)
+        text = f"give ans in a single line and give precise answer. {q}"
+        result = chain(text)
         ans = result["result"]
         sources = [doc.page_content[:300] for doc in result["source_documents"]]
         answers.append(AnswerItem(question=q, answer=ans, sources=sources))
