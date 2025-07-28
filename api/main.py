@@ -1,9 +1,12 @@
 from fastapi import FastAPI, Depends, HTTPException
 from app.models.schema import RunRequest, RunResponse
+print("🔹 Models1 loaded")
 from app.services.pdf_utils import download_pdf_text
+print("🔹 Models1 loaded")
 from app.services.rag_engine import build_rag_chain
+print("🔹 Models1 loaded")
 from app.services.auth import verify_bearer_token
-import traceback
+print("🔹 Models1 loaded")
 
 app = FastAPI()
 
