@@ -1,10 +1,8 @@
 {
   "version": 2,
   "functions": {
-    "api/**": {
-      "use": "@vercel/python",
-      "runtime": "vercel-python@3.11",
-      "excludeFiles": "{tests,.venv,*.md,docs,.git,*.cache,__pycache__}/**"
+    "api/**/*.py": {
+      
     }
   },
   "routes": [
