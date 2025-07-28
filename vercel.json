@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "functions": {
-    "api/**": {
+  "builds": [
+    {
+      "src": "api/main.py",
       "use": "@vercel/python"
     }
-  },
+  ],
+  
   "routes": [
     {
       "src": "/hackrx/run",
