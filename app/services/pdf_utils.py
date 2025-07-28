@@ -1,6 +1,7 @@
 import requests
 from pypdf import PdfReader
 from io import BytesIO
+print("🔹 pdf_utils is getting loadded")
 
 def download_pdf_text(url: str) -> str:
     response = requests.get(url)

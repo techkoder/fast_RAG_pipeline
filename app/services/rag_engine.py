@@ -2,11 +2,10 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGener
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
-from langchain.docstore.document import Document
 
 import time
 from google.api_core.exceptions import ResourceExhausted
-
+print("🔹 rag_engine is getting loadded")
 def build_rag_chain(text: str):
     # 1. Split into smaller chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)

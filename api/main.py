@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends
+print("🔹 FastAPI loaded")
 from app.models.schema import RunRequest, RunResponse
 print("🔹 Models1 loaded")
 from app.services.pdf_utils import download_pdf_text

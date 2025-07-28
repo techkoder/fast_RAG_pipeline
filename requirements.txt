@@ -4,6 +4,7 @@ langchain
 langchain-google-genai
 pypdf
 pydantic
+typing
 python-dotenv
 requests
 langchain_community
