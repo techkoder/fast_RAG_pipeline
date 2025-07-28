@@ -9,7 +9,10 @@ app = FastAPI()
 
 @app.post("/hackrx/run", response_model=RunResponse)
 async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
-    try:
+    if request.status_code == 200:
+        print("🔹 Request received")
+    else:
+        print("❗ Error occurred:", request.status_code)
         print("🔹 Request received")
         print("Documents:", request.documents)
         print("Questions:", request.questions)
@@ -28,8 +31,3 @@ async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
 
         print("🔹 Final answers:", answers)
         return RunResponse(answers=answers)
-
-    except Exception as e:
-        print("❗ Error occurred:", e)
-        traceback.print_exc()  # This is key
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
