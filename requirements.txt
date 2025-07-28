@@ -94,7 +94,6 @@ langchain-google-genai==2.0.10
 langchain-openai==0.3.28
 langchain-text-splitters==0.3.9
 langsmith==0.4.8
-libsodium==1.0.18
 markdown-it-py==3.0.0
 markupsafe==3.0.2
 marshmallow==3.26.1
@@ -107,8 +106,6 @@ multidict==6.6.3
 mypy-extensions==1.1.0
 nbclient==0.10.2
 nbconvert==7.16.6
-nbconvert-core==7.16.6
-nbconvert-pandoc==7.16.6
 nbformat==5.10.4
 nest-asyncio==1.6.0
 notebook==7.4.4
