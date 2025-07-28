@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "api/**": {
-      "runtime": "vercel-python@3.11"
+      "use": "@vercel/python"
     }
   },
   "routes": [
