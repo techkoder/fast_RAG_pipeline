@@ -18,7 +18,6 @@ bcrypt==4.3.0
 beautifulsoup4==4.13.4
 bleach==6.2.0
 build==1.2.2.post1
-bzip2==1.0.8
 cachetools==5.5.2
 certifi==2025.7.14
 cffi==1.17.1
@@ -35,7 +34,6 @@ defusedxml==0.7.1
 distro==1.9.0
 durationpy==0.10
 executing==0.8.3
-expat==2.7.1
 fastapi==0.116.1
 filelock==3.18.0
 filetype==1.2.0
@@ -116,7 +114,6 @@ nest-asyncio==1.6.0
 notebook==7.4.4
 notebook-shim==0.2.4
 numpy==2.0.1
-numpy-base==2.0.1
 oauthlib==3.3.1
 onnxruntime==1.22.1
 openai==1.97.1
@@ -129,7 +126,6 @@ opentelemetry-semantic-conventions==0.56b0
 orjson==3.11.0
 overrides==7.4.0
 packaging==24.2
-pandoc==2.12
 pandocfilters==1.5.0
 parso==0.8.4
 pip==25.1
@@ -160,7 +156,6 @@ pysocks==1.7.1
 python==3.11.13
 python-dateutil==2.9.0post0
 python-dotenv==1.1.1
-python-fastjsonschema==2.20.0
 python-json-logger==3.2.1
 pywin32==308
 pywinpty==2.0.15
@@ -199,7 +194,6 @@ typer==0.16.0
 typing-extensions==4.14.1
 typing-inspect==0.9.0
 typing-inspection==0.4.1
-tzdata==2025b
 uritemplate==4.2.0
 urllib3==2.5.0
 uvicorn==0.35.0
@@ -212,6 +206,5 @@ wheel==0.45.1
 widgetsnbextension==4.0.13
 win_inet_pton==1.1.0
 yarl==1.20.1
-zeromq==4.3.5
 zipp==3.23.0
 zstandard==0.23.0
