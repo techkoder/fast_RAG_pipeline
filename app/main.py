@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends, HTTPException
-from models.schema import RunRequest, RunResponse, AnswerItem
-from services.pdf_utils import download_pdf_text
-from services.rag_engine import build_rag_chain
-from services.auth import verify_bearer_token
+from app.models.schema import RunRequest, RunResponse, AnswerItem
+from app.services.pdf_utils import download_pdf_text
+from app.services.rag_engine import build_rag_chain
+from app.services.auth import verify_bearer_token
 
 app = FastAPI()
 
@@ -12,7 +12,7 @@ async def hackrx_run(
     _auth=Depends(verify_bearer_token)
 ):
     try:
-        text = download_pdf_text(request.documents[0])
+        text = download_pdf_text(str(request.documents))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"PDF download/parse failed: {str(e)}")
 
