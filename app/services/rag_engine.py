@@ -47,7 +47,7 @@ def build_rag_chain(text: str):
 
     # 5. Setup Gemini 1.5 LLM
     llm = ChatGoogleGenerativeAI(
-        model="gemini-1.5-pro-latest",
+        model="gemini-2.5-pro",
         temperature=0.4
     )
 

@@ -1,0 +1,11 @@
+# Ignore environment variables
+.env
+
+# Ignore all Jupyter notebooks
+*.ipynb
+
+# VS Code settings
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
