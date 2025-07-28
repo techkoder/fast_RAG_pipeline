@@ -18,22 +18,7 @@
   "installCommand": "python3 -m pip install --no-cache-dir --upgrade pip setuptools && python3 -m pip install --no-cache-dir -r requirements.txt",
   "functions": {
     "api/**": {
-      "excludeFiles": [
-        "**/*.pyc",
-        "**/__pycache__/**",
-        ".env",
-        ".git/**",
-        ".venv/**",
-        "automations/**",
-        "docs/**",
-        "logdir/**",
-        "tests/**",
-        "prisma/migrations/**",
-        "Dockerfile",
-        "README.md",
-        "pytest.ini",
-        "package.json"
-      ]
+      "excludeFiles": "{tests,.venv,*.md,docs,.git,*.cache,__pycache__}/**"
     }
   }
 }
