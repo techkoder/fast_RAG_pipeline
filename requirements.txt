@@ -2,9 +2,7 @@ fastapi
 uvicorn
 langchain
 langchain-google-genai
-google-generativeai
 pypdf
 pydantic
 python-dotenv
 requests
-langchain_community
