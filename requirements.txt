@@ -6,6 +6,5 @@ google-generativeai
 pypdf
 pydantic
 python-dotenv
-io 
 requests
 langchain_community
