@@ -1,3 +1,4 @@
+print("🔹 main is getting loadded")
 from fastapi import FastAPI, Depends
 print("🔹 FastAPI loaded")
 from app.models.schema import RunRequest, RunResponse
