@@ -14,7 +14,9 @@ async def hackrx_run(
     try:
         text = download_pdf_text(str(request.documents))
     except Exception as e:
+        print(f"Error: {e}")
         raise HTTPException(status_code=500, detail=f"PDF download/parse failed: {str(e)}")
+    
 
     chain = build_rag_chain(text)
 
