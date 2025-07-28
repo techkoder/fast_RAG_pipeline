@@ -15,5 +15,10 @@
       "dest": "/api/hackrx_run.py"
     }
   ],
-  "installCommand": "python3 -m pip install --no-cache-dir --upgrade pip setuptools && python3 -m pip install --no-cache-dir -r requirements.txt"
+  "installCommand": "python3 -m pip install --no-cache-dir --upgrade pip setuptools && python3 -m pip install --no-cache-dir -r requirements.txt",
+  "functions": {
+    "api/**": {
+      "excludeFiles": "{tests,.venv,*.md,docs,.git,*.cache,__pycache__}/**"
+    }
+  }
 }
