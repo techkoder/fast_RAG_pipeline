@@ -12,21 +12,24 @@ async def hackrx_run(
     _auth=Depends(verify_bearer_token)
 ):
     try:
+        # Log request input
+        print(f"Received documents={request.documents}, questions={request.questions}")
+
+        # You might need to adapt this line to handle multiple docs properly
         text = download_pdf_text(str(request.documents))
-    except Exception as e:
-        print(f"Error: {e}")
-        raise HTTPException(status_code=500, detail=f"PDF download/parse failed: {str(e)}")
+
+        chain = build_rag_chain(text)
+
+        answers = []
+        for q in request.questions:
+            prompt = f"give ans in a single line and give precise answer. {q}"
+            result = chain(prompt)
+            ans = result["result"]
+            sources = [doc.page_content[:300] for doc in result["source_documents"]]
+            answers.append(AnswerItem(question=q, answer=ans, sources=sources))
+
+        return RunResponse(answers=answers)
     
-
-    chain = build_rag_chain(text)
-
-    answers = []
-    for q in request.questions:
-        text = f"give ans in a single line and give precise answer. {q}"
-        result = chain(text)
-        ans = result["result"]
-        sources = [doc.page_content[:300] for doc in result["source_documents"]]
-        answers.append(AnswerItem(question=q, answer=ans, sources=sources))
-
-    return RunResponse(answers=answers)
-
+    except Exception as e:
+        print(f"Unhandled error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Internal server error: {e}")
