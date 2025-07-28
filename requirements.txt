@@ -150,7 +150,6 @@ pypika==0.48.9
 pyproject-hooks==1.2.0
 pyreadline3==3.5.4
 pysocks==1.7.1
-python==3.11.13
 python-dateutil==2.9.0post0
 python-dotenv==1.1.1
 python-json-logger==3.2.1
