@@ -18,4 +18,9 @@ async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
     print("answers:", answers)
     return RunResponse(answers=answers)
 
-
+@app.get("/hackrx/run")
+async def status_check():
+    return {
+        "status": "ready",
+        "info": "Use POST to /hackrx/run to send questions and PDF URL."
+    }
