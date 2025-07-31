@@ -45,15 +45,13 @@ def build_rag_chain(text: str):
 
     # 5. Setup Gemini 1.5 LLM
     llm = ChatGoogleGenerativeAI(
-        model="learnlm-2.0-flash-experimental",
-        temperature=0
+        model="gemini-2.0-flash-thinking-exp-1219"
     )
 
     # 6. Build Retrieval QA Chain
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
-        retriever=retriever,
-        return_source_documents=True
+        retriever=retriever
     )
 
     return qa_chain
