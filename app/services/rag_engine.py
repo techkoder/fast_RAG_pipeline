@@ -45,7 +45,7 @@ def build_rag_chain(text: str):
 
     # 5. Setup Gemini 1.5 LLM
     llm = ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash-thinking-exp-1219"
+        model="gemini-2.5-flash-lite"
     )
 
     # 6. Build Retrieval QA Chain

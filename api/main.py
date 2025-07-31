@@ -18,8 +18,11 @@ async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
     pdf_and_chain_time = time.time()-time2
     print(f"the pdf time is :{pdf_and_chain_time}")
     async def ask_question(q: str):
+        start_time2= time.time()
         optimized_query = f"Pls give a precise answer in a single line. {q}"
         result = await chain.ainvoke({"query": optimized_query})
+        time_to_ans_query = time.time()
+        print(time_to_ans_query-start_time2)
         return result["result"]
     answers = await asyncio.gather(*(ask_question(q) for q in request.questions))
     print("answers:", answers)
