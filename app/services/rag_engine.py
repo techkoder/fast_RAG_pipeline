@@ -8,25 +8,24 @@ from google.api_core.exceptions import ResourceExhausted
 print("🔹 rag_engine is getting loadded")
 def build_rag_chain(text: str):
     # 1. Split into smaller chunks
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     docs = text_splitter.create_documents([text])
 
     # 2. Setup embedding model
     embedding = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
     # 3. Batch and embed with retries
-    batch_size = 5
+    print(len(docs))
+    batch_size = 200
     embedded_docs = []
     for i in range(0, len(docs), batch_size):
         batch = docs[i:i + batch_size]
-        texts = [d.page_content for d in batch]
 
         retries = 3
         while retries:
             try:
-                embedding.embed_documents(texts)  # this just confirms it works
+                # embedding.embed_documents(texts)  # this just confirms it works
                 embedded_docs.extend(batch)
-                time.sleep(1.2)
                 break
             except ResourceExhausted:
                 print("[429] Rate limit hit. Retrying...")
