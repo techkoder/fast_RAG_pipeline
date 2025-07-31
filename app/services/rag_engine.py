@@ -16,7 +16,7 @@ def build_rag_chain(text: str):
 
     # 3. Batch and embed with retries
     print(len(docs))
-    batch_size = 200
+    batch_size = 250
     embedded_docs = []
     for i in range(0, len(docs), batch_size):
         batch = docs[i:i + batch_size]
