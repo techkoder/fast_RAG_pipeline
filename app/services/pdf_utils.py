@@ -22,6 +22,7 @@ def extract_text_from_email(file_stream: BytesIO) -> str:
     return text
 
 def download_pdf_text(url: str) -> str:
+    print(f"downloading pdf from {url}")
     response = requests.get(url, stream=True)
     response.raise_for_status()
     file_stream = BytesIO(response.content)
