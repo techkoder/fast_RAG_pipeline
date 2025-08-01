@@ -44,11 +44,11 @@ async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
         print(f"the time to ans 1 query is{time_to_ans_query-start_time2}")
         return [ans.strip() for ans in result["result"].split("_")]
     batches = list(batch_questions(request.questions,5))
-    batch_answers = await asyncio.gather(*(ask_question(batch) for batch in batches))
+    batch_answers = await asyncio.gather(*(ask_question(batch) for batch in batches if batch))
     answers = [item for sublist in batch_answers for item in sublist]
-    all_answers = answers[:len(request.questions)]
-    print("answers:", all_answers)
-    return RunResponse(answers=all_answers)
+    # all_answers = answers[:len(request.questions)]
+    print("answers:", answers)
+    return RunResponse(answers=answers)
 
 # @app.get("/hackrx/run")
 # async def status_check():
