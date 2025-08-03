@@ -15,9 +15,9 @@ def build_rag_chain(text: str):
         documents=docs,
         embedding=embedding  
     )
-    retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 7})
+    retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 8})
     llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-pro"
+        model="gemini-2.5-flash"
     )
 
     # 6. Build Retrieval QA Chain
