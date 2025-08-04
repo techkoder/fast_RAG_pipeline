@@ -2,7 +2,7 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGener
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
-from langchain.retrievers import EnsembleRetriever
+from langchain.retrievers import BM25Retriever, EnsembleRetriever
 
 print("🔹 rag_engine is getting loadded")
 def get_search_k_similar(text_length):
@@ -23,7 +23,6 @@ def get_search_k_lexical(text_length):
 
 def build_rag_chain(text: str):
     k_similar = get_search_k_similar(len(text))
-    k_lexical = get_search_k_lexical(len(text))
     # 1. Split into smaller chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     docs = text_splitter.create_documents([text])
@@ -38,19 +37,10 @@ def build_rag_chain(text: str):
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash-lite"
     )
-    keyword_retriever = vectorstore.as_retriever(
-        search_type="lexical",    # This requires latest Chroma and LangChain
-        search_kwargs={"k": k_lexical}
-    )
-    hybrid_retriever = EnsembleRetriever(
-        retrievers=[vector_retriever, keyword_retriever],
-        weights=[0.5, 0.5]  # Tune the score weights as needed
-    )
-
     # 6. Build Retrieval QA Chain
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
-        retriever=hybrid_retriever
+        retriever=vector_retriever
     )
 
     return qa_chain
