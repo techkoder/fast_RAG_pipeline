@@ -37,7 +37,7 @@ async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
         print(f"asking questions {batch}")
         start_time2= time.time()
         joined = "_".join(q for q in batch)
-        optimized_query = (f"Pls give a simple precise answer for each question.each question is seprated by '_' pls seprate each anser by '_' as well.if you don.t know the ans give some info related to the question. {joined}")
+        optimized_query = (f"Pls give a simple precise answer for each question in a single line and explain the ans in a single line as well.each question is seprated by '_' pls seprate each anser by '_' as well.{joined}")
         print(optimized_query)
         result = await chain.ainvoke({"query": optimized_query})
         time_to_ans_query = time.time()
