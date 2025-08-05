@@ -28,7 +28,10 @@ def batch_questions(questions, n_batches=5):
     return batches
 
 @app.post("/hackrx/run", response_model=RunResponse)
+
 async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
+    DELIMITER = "|||"
+
     text = download_pdf_text(request.documents)
     chain = build_rag_chain(text)
     pdf_and_chain_time = time.time()-time2
@@ -36,13 +39,18 @@ async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
     async def ask_question(batch):
         print(f"asking questions {batch}")
         start_time2= time.time()
-        joined = "_".join(q for q in batch)
-        optimized_query = (f"Pls give a simple precise answer for each question in a single line and explain the ans in a single line as well.each question is seprated by '_' pls seprate each anser by '_' as well.{joined}")
-        print(optimized_query)
-        result = await chain.ainvoke({"query": optimized_query})
+        prompt = (
+            f"Answer each of the following questions in two sentences: "
+            f"First, give a simple, precise one-line answer. "
+            f"Second, provide a one-line explanation. "
+            f"Questions are separated by '{DELIMITER}'. "
+            f"For output, strictly separate each answer by '{DELIMITER}'.\n\n"
+            f"Questions: {DELIMITER.join(batch)}"
+        )
+        result = await chain.ainvoke({"query": prompt})
         time_to_ans_query = time.time()
         print(f"the time to ans 1 query is{time_to_ans_query-start_time2}")
-        return [ans.strip() for ans in result["result"].split("_")]
+        return [ans.strip() for ans in result["result"].split(DELIMITER)]
     batches = list(batch_questions(request.questions,5))
     batch_answers = await asyncio.gather(*(ask_question(batch) for batch in batches if batch))
     answers = [item for sublist in batch_answers for item in sublist]
