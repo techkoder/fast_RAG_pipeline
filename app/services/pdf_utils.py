@@ -1,5 +1,5 @@
 import requests
-import fitz  # PyMuPDF
+import fitz  
 import docx
 import extract_msg
 from io import BytesIO

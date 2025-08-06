@@ -2,29 +2,15 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGener
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
-from langchain.retrievers import BM25Retriever, EnsembleRetriever
 
 print("🔹 rag_engine is getting loadded")
-def get_search_k_similar(text_length):
-    if text_length < 150000:
-        return 3
-    elif text_length < 750000:
-        return 7
-    else:
-        return 10
 
-def get_search_k_lexical(text_length):
-    if text_length < 150000:
-        return 2
-    elif text_length < 750000:
-        return 4
-    else:
-        return 7 
+llm_parameters={"chunk_size":1000,"chunk_overlap":200,"k":7,"temprature":0.4}
 
 def build_rag_chain(text: str):
-    k_similar = get_search_k_similar(len(text))
+    # k_similar = get_search_k_similar(len(text))
     # 1. Split into smaller chunks
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=llm_parameters["chunk_size"], chunk_overlap=llm_parameters["chunk_overlap"])
     docs = text_splitter.create_documents([text])
     # 2. Setup embedding model
     embedding = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
@@ -33,7 +19,7 @@ def build_rag_chain(text: str):
         documents=docs,
         embedding=embedding  
     )
-    vector_retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": k_similar})
+    vector_retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": llm_parameters["k"]})
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash-lite"
     )
