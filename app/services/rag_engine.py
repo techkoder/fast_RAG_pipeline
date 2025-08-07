@@ -5,7 +5,7 @@ from langchain.chains import RetrievalQA
 
 print("🔹 rag_engine is getting loadded")
 
-llm_parameters={"chunk_size":1000,"chunk_overlap":200,"k":7,"temprature":0.4}
+llm_parameters={"chunk_size":1000,"chunk_overlap":200,"k":10,"temprature":0.4}
 
 def build_rag_chain(text: str):
     # k_similar = get_search_k_similar(len(text))
