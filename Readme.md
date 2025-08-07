@@ -16,6 +16,7 @@ This Hugging Face Space deploys a Retrieval-Augmented Generation (RAG) app built
 
 ## About
 
+
 - The FastAPI app serves as the backend for your RAG system.
 - ChromaDB is used as the vector store.
 - LangChain manages the language model interaction.
