@@ -1,25 +1,31 @@
+
 ---
 title: LangChain FastAPI RAG App
 emoji: 🦜
 colorFrom: indigo
 colorTo: blue
 sdk: docker
-python_version: 3.11
-app_port: 7860
+sdk_version: "latest"
+app_file: main.py
+pinned: false
 ---
 
-# LangChain + FastAPI + ChromaDB RAG Deployment
+# LangChain FastAPI RAG App
 
-This Space deploys a LangChain-based Retrieval-Augmented Generation app using FastAPI, ChromaDB, and Google Gemini APIs in a Docker container.
+This Hugging Face Space deploys a Retrieval-Augmented Generation (RAG) app built using LangChain, FastAPI, ChromaDB, and Google Gemini API, packaged within a Docker container.
+
+## About
+
+- The FastAPI app serves as the backend for your RAG system.
+- ChromaDB is used as the vector store.
+- LangChain manages the language model interaction.
+- Google Gemini is used as the LLM backend.
+- Docker is used for consistent environment deployment.
+- Python 3.11 is the runtime environment.
 
 ## How to Run
 
-The app listens on port 7860. The Dockerfile handles the environment setup and dependencies.
+Once deployed, the app listens on port **7860** as required by Hugging Face Spaces when using Docker.
 
-## Environment Variables
+Visit your Space URL to interact with the API. The FastAPI Swagger docs are accessible at:
 
-Set your environment variables (like API keys) in the Space settings under **Variables and secrets** on Hugging Face.
-
-## Repository
-
-The project source is managed in GitHub and deployed here using Docker on Hugging Face Spaces.
