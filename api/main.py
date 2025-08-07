@@ -3,7 +3,7 @@ start_time = time.time()
 import asyncio
 from fastapi import FastAPI, Depends
 from app.models.schema import RunRequest, RunResponse
-from app.services.pdf_utils import download_pdf_text
+from app.services.pdf_utils import download_pdf_text_async
 from app.services.rag_engine import build_rag_chain
 from app.services.auth import verify_bearer_token
 import_time = time.time()-start_time
@@ -32,7 +32,7 @@ def batch_questions(questions, n_batches=5):
 async def hackrx_run(request: RunRequest, _auth=Depends(verify_bearer_token)):
     DELIMITER = "|||"
 
-    text = download_pdf_text(request.documents)
+    text =await download_pdf_text_async(request.documents)
     chain = build_rag_chain(text)
     pdf_and_chain_time = time.time()-time2
     print(f"the pdf time is :{pdf_and_chain_time}")
