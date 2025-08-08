@@ -46,7 +46,7 @@ def extract_pdf_metadata_from_stream(file_stream: BytesIO):
 
     return metadata
 
-def write_metadata_to_file(metadata, output_path="meta_data.txt"):
+def write_metadata_to_file(metadata, output_path="/storage/meta_data.txt"):
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(f"Number of Pages: {metadata.get('pages', 'N/A')}\n")
         f.write(f"Number of Words: {metadata.get('words', 'N/A')}\n")
