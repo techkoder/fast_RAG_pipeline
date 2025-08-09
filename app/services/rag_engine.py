@@ -55,14 +55,14 @@ def build_rag_chain(text: str):
     vector_retriever = vectorstore.as_retriever(
         search_type="mmr", 
         search_kwargs={
-            "k": llm_parameters["mmr_k"],
-            "fetch_k": llm_parameters["mmr_fetch_k"],
-            "lambda_mult": llm_parameters["mmr_lambda"]
+            "k": 8,
+            "fetch_k": 20,
+            "lambda_mult": 0.35
         }
     )
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash-lite",
-        temperature=llm_parameters["temperature"]
+        temperature=1
     )
     # 6. Build Retrieval QA Chain
     qa_chain = RetrievalQA.from_chain_type(
