@@ -34,13 +34,13 @@ def read_metadata():
     
     return pages, words, sections
 
-# Read metadata and get parameters
-pages, words, sections = read_metadata()
-print(f"📊 Metadata loaded - Pages: {pages}, Words: {words}, Sections: {sections}")
 
-llm_parameters = select_llm_parameters(pages, words, sections)
 
 def build_rag_chain(text: str):
+    # Read metadata and get parameters
+    pages, words, sections = read_metadata()
+    print(f"📊 Metadata loaded - Pages: {pages}, Words: {words}, Sections: {sections}")
+    llm_parameters = select_llm_parameters(pages, words, sections)
     # k_similar = get_search_k_similar(len(text))
     # 1. Split into smaller chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=llm_parameters["chunk_size"], chunk_overlap=llm_parameters["overlap"])
