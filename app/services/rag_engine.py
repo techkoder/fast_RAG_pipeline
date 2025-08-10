@@ -9,7 +9,7 @@ print("🔹 rag_engine is getting loadded")
 
 def read_metadata():
     """Read metadata from meta_data.txt and extract pages, words, and sections"""
-    metadata_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'meta_data.txt')
+    metadata_path = "/tmp/meta_data.txt"
     
     pages = 0
     words = 0
