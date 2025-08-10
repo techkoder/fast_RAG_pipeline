@@ -21,7 +21,7 @@ def select_llm_parameters(pages, words, sections):
     else:
         overlap = 150
     # --------------------------
- 
+    print(f"The chunk size is {chunk_size}\nThe words are {words}\nThe sections are {sections}\nThe pages are {pages}\nThe overlap size is{overlap}")
 
     return {
         "chunk_size": chunk_size,
